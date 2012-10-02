@@ -119,6 +119,10 @@ otherwise it uses the current path.
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+## Related projects
+
+[Backbone-Factory](https://github.com/SupportBee/Backbone-Factory)
+
 ## Author
 
 [Nikos Gereoudakis](https://twitter.com/ni_ger)
