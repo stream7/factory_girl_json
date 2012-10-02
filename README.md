@@ -108,7 +108,7 @@ you will get a `user_with_posts.json` file with data:
     rake factory_girl_json:export_serialized          # Exports json fixtures for FactoryGirl factories with the json_serializer option
 
 ### Default exporting paths
-if Rails is used it will write the json files to `spec\javascripts\fixtures\json` or `test\javascripts\fixtures\json`
+if Rails is used it will write the json files to `spec/javascripts/fixtures/json` or `test/javascripts/fixtures/json`
 otherwise it uses the current path.
 
 ## Contributing
