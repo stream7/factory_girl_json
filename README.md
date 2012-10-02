@@ -6,7 +6,7 @@ you might need to create some quite complicated json fixtures to seed the models
 
 This gem will use your `FactoryGirl` factories to create these json fixtures for you.
 
-Furthermore it supports custom serializers (e.g. [`active_model_serializers`](https://github.com/josevalim/active_model_serializers) or any class that takes a model in its constructor and responds to `to_json`).
+Furthermore it supports custom serializers (e.g. [active_model_serializers](https://github.com/josevalim/active_model_serializers) or any class that takes a model in its constructor and responds to `to_json`).
 
 The fixtures can be loaded in your tests using a javascript library such as [jasmine-jquery](https://github.com/velesin/jasmine-jquery#json-fixtures).
 
