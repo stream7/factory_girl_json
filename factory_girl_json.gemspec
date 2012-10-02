@@ -4,9 +4,9 @@ require File.expand_path('../lib/factory_girl_json/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Nikos Gereoudakis"]
   gem.email         = ["gereoudakis@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{Create json fixtures from your FactoryGirl factories}
+  gem.summary       = %q{Create json fixtures from your FactoryGirl factories}
+  gem.homepage      = "https://github.com/stream7/factory_girl_json"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
