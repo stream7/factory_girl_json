@@ -32,7 +32,7 @@ describe FactoryGirlJson do
     user['email'].should_not be_nil
     user['age'].should_not be_nil
     user['posts'].should_not be_nil
-    user['posts'][0]['post']['title'].should_not be_nil
+    user['posts'][0]['title'].should_not be_nil
     File.delete path
   end
 

@@ -56,10 +56,7 @@ You can add another option `json_serializer` which indicates which class will be
       end
 
       def to_json(options = {})
-        posts = {posts: @user.posts.as_json}
-        user = @user.as_json
-        user['user'].merge! posts
-        JSON.generate user
+        @user.to_json(include: :posts)
       end
     end
 
@@ -91,16 +88,15 @@ you will get a `user_with_posts.json` file with data:
         "name": "user name 1",
         "posts": [
           {
-            "post": {
-              "body": "post body",
-              "id": 1,
-              "title": "post title",
-              "user_id": 1
-            }
+            "body": "post body",
+            "id": 1,
+            "title": "post title",
+            "user_id": 1
           }
         ]
       }
     }
+
 
 ### All rake tasks
     rake factory_girl_json:all                        # Exports json fixtures for all FactoryGirl factories
