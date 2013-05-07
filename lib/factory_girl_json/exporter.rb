@@ -14,15 +14,33 @@ module FactoryGirlJson
     def export_factory(factory)
       $stdout.puts "Exporting factory #{factory.name}"
       path = file_path(factory)
-      unless File.exists? path
+        
+      json = ""
+      
+      if factory.json_items
+        array = FactoryGirl.send(:create_list, factory.name,  factory.json_items)
+        json = array_to_json(array, factory)
+      else
         model = factory.run(:create, {})
         json = to_json(model, factory.json_serializer)
-        write_file(json, path)
-      else
-        $stderr.puts "File #{factory.name}.json exists, delete file and run again to rewrite"
       end
+
+      write_file(json, path)
     end
 
+    def array_to_json(array, factory, options={})
+      serializer = factory.array_serializer
+      serializer ||= ActiveModel::ArraySerializer if defined? ActiveModel::ArraySerializer
+      
+      options[:each_serializer] = factory.json_serializer if serializer == ActiveModel::ArraySerializer and factory.json_serializer
+      
+      if serializer
+        serializer.new(array, options).to_json
+      else
+        array.to_json
+      end
+    end
+    
     def to_json(model, serializer = nil)
       if serializer
         serializer.new(model).to_json
@@ -33,7 +51,7 @@ module FactoryGirlJson
 
     def write_file(json, path)
       FileUtils.mkdir_p File.dirname(path)
-      File.open(path, 'w') do |file|  
+      File.open(path, 'w+') do |file|  
         file.puts JSON.pretty_generate(JSON.parse(json))
       end
       $stdout.puts "Wrote file #{path}"
