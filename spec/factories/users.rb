@@ -5,7 +5,7 @@ FactoryGirl.define do
     age 12
   end
 
-  factory :user_with_posts, parent: :user, json_serializer: UserSerializer do
+  factory :user_with_posts, parent: :user do
     after(:create) do |user|
       create :post, user: user
     end

@@ -42,7 +42,7 @@ You can add another option `json_serializer` which indicates which class will be
         age 12
       end
 
-      factory :user_with_posts, parent: :user, json_serializer: UserSerializer do
+      factory :user_with_posts, parent: :user do
         after(:create) do |user|
           create :post, user: user
         end
@@ -61,47 +61,61 @@ You can add another option `json_serializer` which indicates which class will be
     end
 
 
-Now if you run this command
+There is one available rake task
 
-`RAILS_ENV=test bundle exec rake factory_girl_json:export['user']`
+`RAILS_ENV=test bundle exec rake factory_girl_json:export[factory,size,serializer]`  # Note: no space between rake arguments
 
-you will get a `user.json` file with data:
+For example, running
+
+`RAILS_ENV=test bundle exec rake factory_girl_json:export[user]`
+
+will produce a `user.json` file with data:
 
     {
-      "user": {
+      "age": 12,
+      "email": "useremail1@email.com",
+      "id": 1,
+      "name": "user name 1"
+    }
+
+`RAILS_ENV=test bundle exec rake factory_girl_json:export[user,2]`
+
+will produce a `2.user.json` file with data:
+
+    [
+      {
         "age": 12,
         "email": "useremail1@email.com",
         "id": 1,
         "name": "user name 1"
+      },
+      {
+        "age": 12,
+        "email": "useremail2@email.com",
+        "id": 2,
+        "name": "user name 2"
       }
-    }
+    ]
 
-`RAILS_ENV=test bundle exec rake factory_girl_json:export['user_with_posts']`
+`RAILS_ENV=test bundle exec rake factory_girl_json:export['user_with_posts',1,UserSerializer]`
 
-you will get a `user_with_posts.json` file with data:
+you will get a `user_with_posts.user_serializer.json` file with data:
 
     {
-      "user": {
-        "age": 12,
-        "email": "useremail1@email.com",
-        "id": 1,
-        "name": "user name 1",
-        "posts": [
-          {
-            "body": "post body",
-            "id": 1,
-            "title": "post title",
-            "user_id": 1
-          }
-        ]
-      }
+      "age": 12,
+      "email": "useremail1@email.com",
+      "id": 1,
+      "name": "user name 1",
+      "posts": [
+        {
+          "body": "post body",
+          "id": 1,
+          "title": "post title",
+          "user_id": 1
+        }
+      ]
     }
 
-
-### All rake tasks
-    rake factory_girl_json:all                        # Exports json fixtures for all FactoryGirl factories
-    rake factory_girl_json:export[factory_name]       # Exports json fixture for the selected FactoryGirl factory
-    rake factory_girl_json:export_serialized          # Exports json fixtures for FactoryGirl factories with the json_serializer option
 
 ### Default exporting paths
 if Rails is used it will write the json files to `spec/javascripts/fixtures/json` or `test/javascripts/fixtures/json`

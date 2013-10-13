@@ -15,9 +15,10 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = FactoryGirlJson::VERSION
   
-  gem.add_dependency "factory_girl"
+  gem.add_dependency "factory_girl", ">= 4.1"
   gem.add_dependency "json"
   gem.add_dependency "database_cleaner"
+  gem.add_dependency "activesupport", ">= 3"
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "activerecord"
   gem.add_development_dependency "sqlite3"

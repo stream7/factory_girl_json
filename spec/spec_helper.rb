@@ -6,6 +6,8 @@ require 'serializers/user_serializer'
 require 'factories/posts'
 require 'factories/users'
 
+ActiveRecord::Base.include_root_in_json = false
+
 ActiveRecord::Base.establish_connection(
   :adapter => 'sqlite3',
   :database => ':memory:'
