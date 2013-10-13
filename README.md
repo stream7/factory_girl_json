@@ -1,7 +1,7 @@
 # FactoryGirlJson
 
 This gem facilitates the creation of JSON fixtures for javascript testing in ruby apps.
-While testing composite views in front end "MVC" frameworks (Backbone, Emder, Angular etc) 
+While testing composite views in front end "MVC" frameworks (Backbone, Ember, Angular etc) 
 you might need to create some quite complicated json fixtures to seed the models for the tests.
 
 This gem will use your `FactoryGirl` factories to create these json fixtures for you.
@@ -33,7 +33,6 @@ Or install it yourself as:
 ## Usage
 
 First, define some factories with factory girl. 
-You can add another option `json_serializer` which indicates which class will be used for the serialization of the model.
 
     FactoryGirl.define do
       factory :user do
@@ -99,7 +98,7 @@ will produce a `2.user.json` file with data:
 
 `RAILS_ENV=test bundle exec rake factory_girl_json:export['user_with_posts',1,UserSerializer]`
 
-you will get a `user_with_posts.user_serializer.json` file with data:
+will produce  get a `user_with_posts.user_serializer.json` file with data:
 
     {
       "age": 12,
